@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <bean id="entryPoint403" class="com.jlife.abon.security.ApiForbiddedEntryPoint"/>
+    <bean id="apiAccessDeniedHandler" class="com.jlife.abon.security.ApiAccessDeniedHandler"/>
+
+
+    <!--disable security cache for resources -->
+    <security:http auto-config="true" use-expressions="true"
+                   pattern="^(/images/|/js/|/css/|/fonts/|/uploaded/|/favicon.ico|/widget/|/vendor/).*" request-matcher="regex">
+        <security:headers disabled="true"/>
+
+    </security:http>
+
+
+    <!-- http section for api -->
+    <security:http auto-config="true" use-expressions="true" entry-point-ref="entryPoint403" pattern="/api/**">
+        <security:csrf disabled="true"/>
+        <security:access-denied-handler ref="apiAccessDeniedHandler"/>
+        <security:intercept-url pattern="/api/system/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/api/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/api/company/**" access="hasRole('ROLE_COMPANY')"/>
+        <security:intercept-url pattern="/api/user/**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/api/whoiam" access="permitAll"/>
+        <security:intercept-url pattern="/api/feedback" access="permitAll"/>
+        <security:intercept-url pattern="/api/catalog/**" access="permitAll"/>
+        <security:intercept-url pattern="/api/register-company-self" access="permitAll"/>
+
+        <security:intercept-url pattern="/api/upload"
+                                access="hasAnyRole('ROLE_ADMIN','ROLE_USER','ROLE_COMPANY')"/>
+
+        <security:intercept-url pattern="/api/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER','ROLE_COMPANY')"/>
+
+        <security:form-login login-processing-url="/api/j_spring_security_check"
+                             username-parameter="j_username"
+                             password-parameter="j_password"
+                             authentication-failure-handler-ref="apiLoginFailureHandler"
+                             authentication-success-handler-ref="apiLoginSuccessHandler"/>
+
+        <security:logout success-handler-ref="apiLogoutSuccessHandler" logout-url="/api/j_spring_security_logout"/>
+
+        <security:remember-me user-service-ref="securityService" key="eventsServerKey"
+                              authentication-success-handler-ref="rememberSuccessHandler"
+                              remember-me-parameter="_spring_security_remember_me"
+                              token-validity-seconds="2419200"/>
+    </security:http>
+
+
+    <!-- for web browsers-->
+    <security:http auto-config="true" use-expressions="true">
+        <security:csrf disabled="true"/>
+
+        <security:intercept-url pattern="/account/**" access="hasAnyRole('ROLE_ADMIN','ROLE_COMPANY','ROLE_USER')"/>
+
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/company/**" access="hasRole('ROLE_COMPANY')"/>
+        <security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+
+        <security:form-login login-page="/login"
+                             login-processing-url="/j_spring_security_check"
+                             username-parameter="j_username"
+                             password-parameter="j_password"
+                             authentication-failure-url="/login/error"
+                             authentication-success-handler-ref="formSuccessHandler"/>
+
+        <security:logout logout-success-url="/" logout-url="/j_spring_security_logout"/>
+
+        <security:remember-me user-service-ref="securityService" key="eventsServerKey"
+                              authentication-success-handler-ref="rememberSuccessHandler"
+                              remember-me-parameter="_spring_security_remember_me"
+                              token-validity-seconds="2419200"/>
+        <security:headers>
+            <security:frame-options disabled="true"/>
+        </security:headers>
+    </security:http>
+
+
+    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
+
+    <bean id="formSuccessHandler" class="com.jlife.abon.security.FormSuccessHandler">
+        <property name="useReferer" value="true"/>
+    </bean>
+
+    <bean id="apiLoginSuccessHandler" class="com.jlife.abon.security.ApiLoginSuccessHandler"/>
+    <bean id="apiLogoutSuccessHandler" class="com.jlife.abon.security.ApiLogoutSuccessHandler"/>
+    <bean id="apiLoginFailureHandler" class="com.jlife.abon.security.ApiLoginFailureHandler"/>
+    <bean id="rememberSuccessHandler" class="com.jlife.abon.security.RememberSuccessHandler"/>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="securityService">
+            <security:password-encoder hash="bcrypt"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean name="gson" class="com.google.gson.Gson" scope="singleton"/>
+
+</beans>

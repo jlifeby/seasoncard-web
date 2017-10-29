@@ -1,0 +1,10 @@
+rootProject.name = "abon"
+
+include ':entity-mongo'
+include ':entity-shared'
+include ':repository-mongo'
+include ':service-api'
+include ':web'
+include ':migrator-mongo-sql'
+include ':service-mongo'
+include ':service-jpa'

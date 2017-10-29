@@ -1,0 +1,381 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+import java.text.SimpleDateFormat
+
+def buildTime() {
+    def df = new SimpleDateFormat("yyyyMMdd'T'HH:mm'Z'")
+    df.setTimeZone(TimeZone.getTimeZone("UTC"))
+    return df.format(new Date())
+}
+
+def getCommitVersion() {
+    def cmdCommitVersion = "git rev-parse --verify HEAD"
+    def procCommitVersion = cmdCommitVersion.execute()
+    return procCommitVersion.text.trim()[0..6]
+}
+
+def getJenkinsBuildNumber() {
+    def jenkinsBuildNumber = System.getenv("BUILD_NUMBER") != null ? System.getenv("BUILD_NUMBER") : "0"
+    return jenkinsBuildNumber
+}
+
+def getVersionPostFix() {
+    return getCommitVersion() + "-" + buildTime()
+}
+
+buildscript {
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+
+    repositories {
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.8"
+    }
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: "kotlin"
+    apply plugin: 'idea'
+    apply plugin: 'net.ltgt.apt'
+
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+
+    // setups for properties(similar to maven properties section)
+    ext.spring_version = '4.3.3.RELEASE'
+    ext.spring_security_version = '4.1.3.RELEASE'
+    ext.tiles_version = '3.0.5'
+    ext.spring_data_mongodb_version = "1.9.4.RELEASE"
+    ext.jackson_version = "2.6.0"
+    ext.retrofit_version = "2.0.0-beta4"
+    ext.junit_version = "4.12"
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+    }
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+
+    compileKotlin {
+        kotlinOptions {
+            languageVersion = "1.1"
+            jvmTarget = "1.8"
+        }
+    }
+
+    test {
+        reports.html.enabled = false
+    }
+
+}
+
+// configuration of the specific project
+project(':entity-shared') {
+    jar.baseName 'abon-shared'
+    dependencies {
+        compile "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+        testCompile "junit:junit:${junit_version}"
+        testCompile 'org.assertj:assertj-core:1.7.0'
+        compile 'joda-time:joda-time:2.9.3'
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    }
+}
+
+// configuration of the specific project
+project(':entity-mongo') {
+    jar.baseName 'abon-entity'
+    dependencies {
+        compile project(":entity-shared")
+        compile "org.springframework:spring-beans:${spring_version}"
+        compile "org.springframework.data:spring-data-mongodb:${spring_data_mongodb_version}"
+        compile "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+        testCompile "junit:junit:${junit_version}"
+        testCompile 'org.assertj:assertj-core:1.7.0'
+        compile 'joda-time:joda-time:2.9.3'
+        compile 'org.mongodb:mongo-java-driver:3.2.2'
+    }
+}
+
+// configuration of the specific project
+project(':repository-mongo') {
+    jar.baseName 'repository-mongo'
+    dependencies {
+        compile project(":entity-mongo")
+        compile "org.springframework:spring-beans:${spring_version}"
+        compile "org.springframework.data:spring-data-mongodb:${spring_data_mongodb_version}"
+        compile "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+        testCompile "junit:junit:${junit_version}"
+        testCompile 'org.assertj:assertj-core:1.7.0'
+        compile 'joda-time:joda-time:2.9.3'
+        compile 'org.mongodb:mongo-java-driver:3.2.2'
+    }
+}
+
+project(':service-api') {
+    jar.baseName 'abon-service'
+    dependencies {
+        compile project(":entity-shared")
+        compile "org.springframework:spring-context-support:${spring_version}"
+        compile "org.springframework:spring-core:${spring_version}"
+        compile "org.springframework:spring-context:${spring_version}"
+        // todo remove from this. But Media Service require
+        compile "org.springframework:spring-web:${spring_version}"
+        compile "org.springframework.security:spring-security-web:${spring_security_version}"
+        compile 'commons-io:commons-io:2.4'
+        compile 'javax.mail:mail:1.4.7'
+        compile 'org.apache.poi:poi:3.11'
+        compile 'org.apache.poi:poi-ooxml:3.11'
+        compile 'org.apache.commons:commons-csv:1.1'
+        compile 'org.apache.commons:commons-lang3:+'
+        compile 'org.freemarker:freemarker:2.3.21'
+        compile 'com.google.guava:guava:18.0'
+        compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
+        compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+        compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+        testCompile "junit:junit:${junit_version}"
+        testCompile "org.springframework:spring-test:${spring_version}"
+        testCompile 'org.assertj:assertj-core:1.7.0'
+        compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.12.5.RELEASE'
+    }
+}
+
+
+project(':service-mongo') {
+    jar.baseName 'sc-service-mongo'
+
+    dependencies {
+        compile 'org.mapstruct:mapstruct-jdk8:1.1.0.CR1'
+        // OR use this with Java 8 and beyond: org.mapstruct:mapstruct-jdk8:...
+
+        compile project(":entity-mongo")
+        compile project(":repository-mongo")
+        compile project(":service-api")
+        compile "org.springframework:spring-context-support:${spring_version}"
+        compile "org.springframework:spring-core:${spring_version}"
+        compile "org.springframework:spring-context:${spring_version}"
+        // todo remove from this. But Media Service require
+        compile "org.springframework:spring-web:${spring_version}"
+        compile "org.springframework.security:spring-security-web:${spring_security_version}"
+        compile 'commons-io:commons-io:2.4'
+        compile 'javax.mail:mail:1.4.7'
+        compile 'org.apache.poi:poi:3.11'
+        compile 'org.apache.poi:poi-ooxml:3.11'
+        compile 'org.apache.commons:commons-csv:1.1'
+        compile 'org.apache.commons:commons-lang3:+'
+        compile 'org.freemarker:freemarker:2.3.21'
+        compile 'com.google.guava:guava:18.0'
+        compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
+        compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+        compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+        compile "com.infobip:infobip-api-java-client:2.0.0"
+        testCompile "junit:junit:${junit_version}"
+        testCompile "org.springframework:spring-test:${spring_version}"
+        testCompile 'org.assertj:assertj-core:1.7.0'
+        testCompile "org.mockito:mockito-core:2.+"
+        testCompile "com.nhaarman:mockito-kotlin:1.+"
+        apt 'org.mapstruct:mapstruct-processor:1.1.0.CR1'
+    }
+}
+
+project(':service-jpa') {
+    jar.baseName 'sc-service-jpa'
+    dependencies {
+//        compile project(":entity")
+        compile project(":service-api")
+        compile "org.springframework:spring-context-support:${spring_version}"
+        compile "org.springframework:spring-core:${spring_version}"
+        compile "org.springframework:spring-context:${spring_version}"
+        // todo remove from this. But Media Service require
+        compile "org.springframework:spring-web:${spring_version}"
+        compile "org.springframework.security:spring-security-web:${spring_security_version}"
+        compile 'commons-io:commons-io:2.4'
+        compile 'javax.mail:mail:1.4.7'
+        compile 'org.apache.poi:poi:3.11'
+        compile 'org.apache.poi:poi-ooxml:3.11'
+        compile 'org.apache.commons:commons-csv:1.1'
+        compile 'org.apache.commons:commons-lang3:+'
+        compile 'org.freemarker:freemarker:2.3.21'
+        compile 'com.google.guava:guava:18.0'
+        compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
+        compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+        compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+        testCompile "junit:junit:${junit_version}"
+        testCompile "org.springframework:spring-test:${spring_version}"
+        testCompile 'org.assertj:assertj-core:1.7.0'
+    }
+}
+
+project('web') {
+
+    if (!project.hasProperty("mongoCreds")) {
+        ext.mongoCreds = ""
+    }
+
+    if (!project.hasProperty("envType")) {
+        ext.envType = "dev"
+    }
+    if (!project.hasProperty("emailNoreplyPassword")) {
+        ext.emailNoreplyPassword = ""
+    }
+    if (!project.hasProperty("smsRocketPassword")) {
+        ext.smsRocketPassword = ""
+    }
+    if (!project.hasProperty("smsAssistantPassword")) {
+        ext.smsAssistantPassword = ""
+    }
+    if (!project.hasProperty("smsInfobipPassword")) {
+        ext.smsInfobipPassword = ""
+    }
+    if (!project.hasProperty("uploadDir")) {
+        def tmpDir = new File(System.getProperty("user.home"))
+        ext.uploadDir = tmpDir.absolutePath + File.separator + "kartka_upload" + File.separator + envType + File.separator
+    } else {
+        ext.uploadDir = new String(uploadDir).replace("~", System.getProperty("user.home"))
+        def dirObj = new File(uploadDir)
+        ext.uploadDir = dirObj.absolutePath + File.separator + envType + File.separator
+    }
+
+    println("Upload dir is: $uploadDir")
+    def uploadDirObj = new File(uploadDir)
+    if (!uploadDirObj.exists()) {
+        print("Upload dir $uploadDir doesn't exit. Creating...")
+        uploadDirObj.mkdirs()
+        println("Done")
+    }
+
+    def siteIndexIsAllowed = "false"
+    def isBeta = envType == "beta"
+    if (isBeta) {
+        ext.app_url = "https://seasoncard.by"
+        siteIndexIsAllowed = "true"
+    } else {
+        ext.app_url = "http://" + envType + ".seasoncard.by"
+    }
+    println('-' * 50)
+    println("Env Type: $envType")
+    println("Upload Dir: $uploadDir")
+    println("App url param: ${app_url}")
+    println("SEO indexing enabled: ${siteIndexIsAllowed}")
+    println('-' * 50)
+
+    apply plugin: 'war'
+    war.baseName 'abon-web-' + envType
+    war.version "${seasoncard_version}.${getJenkinsBuildNumber()}"
+    dependencies {
+        runtime 'org.slf4j:slf4j-simple:1.7.6'
+        // dependency for compile and runtime
+        compile project(":service-api")
+        runtime project(":service-mongo")
+        // dependency only for compile
+        providedCompile 'org.apache.tomcat:tomcat-servlet-api:8.0.3'
+        compile "jstl:jstl:1.2"
+        compile "org.springframework:spring-core:${spring_version}"
+        compile "org.springframework:spring-web:${spring_version}"
+        compile "org.springframework:spring-webmvc:${spring_version}"
+        compile "org.springframework.security:spring-security-web:${spring_security_version}"
+        compile "org.springframework.security:spring-security-config:${spring_security_version}"
+        compile "org.springframework.security:spring-security-taglibs:${spring_security_version}"
+        compile 'io.springfox:springfox-swagger2:2.6.1'
+        compile 'io.springfox:springfox-swagger-ui:2.6.1'
+        compile "org.apache.tiles:tiles-core:${tiles_version}"
+        compile "org.apache.tiles:tiles-api:${tiles_version}"
+        compile "org.apache.tiles:tiles-jsp:${tiles_version}"
+        compile 'org.apache.tiles:tiles-request-servlet:1.0.3'
+        compile 'commons-fileupload:commons-fileupload:1.3.1'
+        compile 'commons-io:commons-io:2.4'
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.4.4'
+        compile 'org.apache.commons:commons-lang3:3.3.2'
+        compile 'joda-time:joda-time-jsptags:1.1.1'
+        compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:${jackson_version}"
+        compile "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
+        compile "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+        compile "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
+        compile 'com.google.code.gson:gson:+'
+        compile 'javax.validation:validation-api:1.1.0.Final'
+        compile 'org.hibernate:hibernate-validator:5.2.2.Final'
+        compile 'fr.opensagres.xdocreport:org.apache.poi.xwpf.converter.pdf:1.0.5'
+
+        // dependency only for test
+        testCompile "junit:junit:${junit_version}"
+        testCompile 'org.assertj:assertj-core:2.5.0'
+        testCompile "org.springframework:spring-test:${spring_version}"
+        testCompile 'javax.el:javax.el-api:2.2.4'
+        testCompile 'org.glassfish.web:javax.el:2.2.4'
+        testCompile 'com.github.fakemongo:fongo:2.0.9'
+        testCompile 'com.lordofthejars:nosqlunit-mongodb:0.10.0'
+
+        testCompile "org.springframework.data:spring-data-mongodb:${spring_data_mongodb_version}"
+        testCompile 'org.mongodb:mongo-java-driver:3.2.2'
+        testCompile project(':entity-mongo')
+        testCompile project(':repository-mongo')
+        testCompile project(':service-mongo')
+        testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+        testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    }
+
+    processResources {
+        filesNotMatching('docs/**') {
+            filter ReplaceTokens, tokens: [
+                    "application.uploadedDir": uploadDir,
+                    "mongo_db_name"          : "kartka_" + envType,
+                    "app_url"                : app_url,
+                    "site.allow.index"       : siteIndexIsAllowed,
+                    "mongo.credentials"      : mongoCreds,
+                    "email.noreply.password" : emailNoreplyPassword,
+                    "sms.rocket.password"    : smsRocketPassword,
+                    "sms.assistant.password" : smsAssistantPassword,
+                    "sms.infobip.password"   : smsInfobipPassword
+            ]
+        }
+    }
+
+    war {
+        eachFile {
+            if (it.name == 'footer.jsp' || it.name == 'coming-soon.jsp' || it.name == 'footer4.jsp') {
+                def war_build_version = version
+                if (!isBeta) {
+                    war_build_version += "-" + envType + "-" + getVersionPostFix()
+                }
+                it.filter(ReplaceTokens, tokens: ["war_build_version": war_build_version])
+            }
+            if (it.name == 'template.jsp' || it.name == "template4.jsp") {
+                it.filter(ReplaceTokens, tokens: ["isBeta": isBeta.toString()])
+            }
+            if (it.name.endsWith(".xml")) {
+                it.filter(ReplaceTokens, tokens: ["uploadDir": uploadDir])
+
+            }
+        }
+    }
+
+    sourceSets {
+        test.java.srcDirs += 'src/main/kotlin'
+    }
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.2'
+    distributionUrl = 'http://services.gradle.org/distributions/gradle-4.2-all.zip'
+}
+
+
+task testReport(type: TestReport) {
+    destinationDir = file("$buildDir/reports/allTests")
+    // Include the results from the `test` task in all subprojects
+    reportOn subprojects*.test
+}

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"kartka_dev.card"},{"v":1,"unique":true,"key":{"userId":1},"name":"userId","ns":"kartka_dev.card","sparse":true},{"v":1,"unique":true,"key":{"cardUUID":1},"name":"cardUUID","ns":"kartka_dev.card"},{"v":1,"unique":true,"key":{"nfcUUID":1},"name":"nfcUUID","sparse":true,"ns":"kartka_dev.card"}]}

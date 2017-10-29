@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean id="rocketSmsService" class="com.jlife.abon.service.sms.RocketSmsService">
+        <property name="senderName" value="SeasonCard"/>
+        <property name="username" value="993529919"/>
+       <property name="password" value="${sms.rocket.password}"/>
+    </bean>
+
+    <bean id="smsAssistentService" class="com.jlife.abon.service.sms.SmsAssistentSmsService">
+        <property name="senderName" value="SeasonCard"/>
+        <property name="username" value="JLSistems"/>
+        <property name="password" value="${sms.assistant.password}"/>
+    </bean>
+
+
+    <bean id="unionSmsService" class="com.jlife.abon.service.sms.UnionSmsService">
+        <property name="rocketSmsService" ref="rocketSmsService"/>
+        <property name="smsAssistentSmsService" ref="smsAssistentService"/>
+    </bean>
+
+    <bean id="infoBipSmsService" class="com.jlife.abon.service.sms.InfoBipSmsService">
+        <property name="senderName" value="SeasonCard"/>
+        <property name="username" value="sc_developer"/>
+        <property name="password" value="${sms.infobip.password}"/>
+    </bean>
+</beans>

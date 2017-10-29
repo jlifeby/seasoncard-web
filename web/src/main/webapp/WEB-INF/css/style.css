@@ -1,0 +1,163 @@
+/*body {*/
+/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+/*}*/
+
+/*.card-panel {*/
+    /*background-color: #f9fcff !important;*/
+/*}*/
+
+
+.required {
+    color: #c3293a;
+    display: inline-block;
+    font-size: 14px;
+}
+
+#boxed-bg {
+    background-image: url('../images/background.jpg');
+    background-position: 50% 0;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.boxed {
+    background: #fff;
+    margin: 0 auto;
+    max-width: 1300px;
+    padding-top: 20px;
+}
+
+.boxed .page-box {
+    min-height: 700px;
+    /*background: #fff;*/
+    background: #fcfcff;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 18px;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 18px;
+    overflow: hidden;
+    position: relative;
+}
+
+.testimonial-card .card-footer {
+    background-color: #fff
+}
+
+p.list {
+    margin: 3px 0 0;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+p.list-light {
+    margin: 3px 0 0;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+/* Form */
+
+label {
+    font-size: 1rem;
+    color: #565656;
+}
+
+textarea.form-control {
+    border: 1px solid #9e9e9e;
+}
+
+.form-control.readonly{
+    background-color: transparent;
+}
+
+p.exposition {
+    font-size: 13px;
+}
+
+.error-message {
+    color: red;
+    font-size: 1.1rem;
+}
+
+/*Date picker*/
+.picker__close, .picker__clear, .picker__today {
+    padding: 0 0;
+    color: #4285F4;
+}
+
+/* Horizontal List */
+.horizontal-listing a.btn {
+    color: #ffffff;
+}
+
+/*********************
+ Landing Page components
+**********************/
+.pricing-card {
+    margin-bottom: 2em;
+}
+
+.pricing-card .card-up .price:before {
+    content: "руб";
+    font-size: 20px;
+}
+
+.pricing-card .card-up .price:after {
+    content: "/мес";
+    font-size: 25px;
+}
+
+.pricing-card .card-up .price {
+    font-size: 3em;
+}
+
+/*.horizontal-listing a {*/
+    /*color: #039be5;*/
+/*}*/
+
+
+/* Header */
+
+.user-navbar .navbar-nav > li > a {
+     padding-top: 15px;
+     padding-bottom: 15px;
+}
+
+.user-navbar .navbar-brand {
+    padding: 10px 15px;
+    height: 50px;
+}
+
+
+/* Footer */
+.vk-bg {
+    background-color: #4e7cce;
+}
+
+.fb-bg {
+    background-color: #3B5998;
+}
+.tw-bg {
+    background-color: #55ACEE;
+}
+
+footer.page-footer {
+    margin-top: 0px;
+}
+
+footer.page-footer a {
+    line-height: 25px;
+}
+
+footer.page-footer a {
+    color: #fff;
+    font-size: 15px;
+}
+
+/* Model table */
+
+.table-models > tbody > tr > td.edit-cell {
+    padding: 2px
+}
+
+.table-models > tbody > tr > td.edit-cell a.btn-floating {
+    margin: 0;
+}

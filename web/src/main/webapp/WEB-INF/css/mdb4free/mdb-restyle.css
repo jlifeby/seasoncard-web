@@ -1,0 +1,396 @@
+/* Horizontal listing */
+.horizontal-listing .row {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.horizontal-listing .row:first-of-type {
+    border-top: none;
+}
+
+.horizontal-listing img {
+    margin: 16px 10px 15px 5px;
+}
+
+.horizontal-listing .title {
+    margin-top: 10px;
+
+}
+
+.horizontal-listing .btn {
+    margin-bottom: 0.25rem;
+}
+
+/*.horizontal-listing a {*/
+/*color: #000;*/
+/*font-weight: 300;*/
+/*}*/
+
+/*.horizontal-listing ul li {*/
+/*display: inline;*/
+/*}*/
+
+/*.horizontal-listing .rating {*/
+/*color: #fff;*/
+/*}*/
+
+/*.horizontal-listing .rating .material-icons {*/
+/*font-size: 0.9em;*/
+/*}*/
+
+/*.horizontal-listing .rating:hover .material-icons {*/
+/*color: gold;*/
+/*transition: all 0.4s linear;*/
+/*font-size: 0.9em;*/
+/*}*/
+
+.horizontal-listing .item-details a {
+    color: #9e9e9e;
+}
+
+/*********************
+  Table
+**********************/
+
+.table td, .table th {
+    padding: .25rem;
+}
+
+
+ul.striped.min {
+    margin-bottom: 0.1rem;
+}
+
+ul.striped li {
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+ul.striped.min li {
+    padding: 0;
+}
+
+ul.striped li:last-child {
+    border-bottom: 0;
+}
+
+
+
+/* Form */
+
+input[type=text], input[type=password], input[type=email],
+input[type=url], input[type=time], input[type=date],
+input[type=datetime-local], input[type=tel], input[type=number],
+input[type=search-md], textarea.materialize-textarea {
+    height: 1rem;
+    margin: 0 0 5px 0;
+}
+
+.input-field label {
+    top: 0.4rem;
+    left: 0.4rem;
+}
+
+form .form-group label {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+/*.btn {*/
+/*margin: 5px;*/
+/*}*/
+
+textarea.form-control {
+    height: auto;
+    background-color: white;
+    margin-bottom: 0.2rem;
+}
+
+/*********************
+  Dropdown
+**********************/
+
+.dropdown-content li {
+    line-height: 1rem;
+}
+.dropdown-content li > a,
+.dropdown-content li > span {
+    font-size: 1rem;
+    padding: 0.7rem 0.7rem;
+}
+
+/*h1 {*/
+/*font-size: 3.36rem;*/
+/*margin: 1.68rem 0 1.344rem 0;*/
+/*}*/
+
+/*h2 {*/
+/*font-size: 2.848rem;*/
+/*margin: 1.424rem 0 1.14rem 0;*/
+/*}*/
+
+/*h3 {*/
+/*font-size: 2.336rem;*/
+/*margin: 1.168rem 0 0.935rem 0;*/
+/*}*/
+
+/*h4 {*/
+/*font-size: 1.824rem;*/
+/*margin: 0.912rem 0 0.73rem 0;*/
+/*}*/
+
+/*h5 {*/
+/*font-size: 1.312rem;*/
+/*margin: 0.656rem 0 0.425rem 0;*/
+/*}*/
+
+/*h6 {*/
+/*font-size: 0.8rem;*/
+/*margin: 0.4rem 0 0.32rem 0;*/
+/*}*/
+
+p {
+    line-height: 1.3;
+}
+
+.bold-500 {
+    font-weight: 500 !important;
+}
+
+/*********************
+  Buttons
+**********************/
+
+/*.btn-default {*/
+/*color: #fff;*/
+/*background: #03a9f4;*/
+/*}*/
+
+/*.btn-default:hover, .btn-default:focus {*/
+/*background-color: #5a95f5 !important;*/
+/*color: #fff !important;*/
+/*}*/
+
+/*.btn-primary {*/
+/*background: #00bcd4;*/
+/*}*/
+
+/*.btn-primary:hover, .btn-primary:focus {*/
+/*background-color: #00acc1 !important;*/
+/*color: #fff;*/
+/*}*/
+
+/* Horizontal listing */
+/*.horizontal-listing .row {*/
+/*padding-top: 5px;*/
+/*padding-bottom: 5px;*/
+/*}*/
+
+/*.horizontal-listing a {*/
+/*font-weight: normal;*/
+/*}*/
+
+/*********************
+  Cards
+**********************/
+
+.card .card-content {
+    padding: 10px 20px;
+}
+
+.card .card-action {
+    padding: 10px 20px;
+}
+
+/*********************
+  Dialog
+**********************/
+
+.modal-footer {
+    padding: 10px;
+}
+
+.modal-footer .btn {
+    margin: 5px 5px;
+}
+
+.modal-footer .btn + .btn {
+    margin: 5px 5px;
+}
+
+/*********************
+  Skin
+**********************/
+
+/*#e1f5fe light-blue lighten-5*/
+
+/*#b3e5fc light-blue lighten-4*/
+
+/*#81d4fa light-blue lighten-3*/
+
+/*#4fc3f7 light-blue lighten-2*/
+
+/*#29b6f6 light-blue lighten-1*/
+
+/*#03a9f4 light-blue*/
+
+/*#039be5 light-blue darken-1*/
+
+/*#0288d1 light-blue darken-2*/
+
+/*#0277bd light-blue darken-3*/
+
+/*#01579b light-blue darken-4*/
+
+/*#l80d8ff ight-blue accent-1*/
+
+/*#40c4ff light-blue accent-2*/
+
+/*#00b0ff light-blue accent-3*/
+
+/*#0091ea light-blue accent-4*/
+
+.light-blue-skin .side-nav {
+    background: #000000;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #000000 0%, #03a9f4 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #000000 0%, #03a9f4 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #000000 0%, #03a9f4 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#03a9f4 ', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+.light-blue-skin .primary-color, .light-blue-skin .stepper li.active a .circle, .stepper li.active a .light-blue-skin .circle, .light-blue-skin .stepper li.completed a .circle, .stepper li.completed a .light-blue-skin .circle {
+    background-color: #03a9f4 !important;
+}
+
+.light-blue-skin .navbar,
+.light-blue-skin .page-footer {
+    background-color: #03a9f4;
+}
+
+.light-blue-skin .side-nav .logo-wrapper {
+    background: url("http://mdbootstrap.com/images/sidenavs/blue.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.light-blue-skin .side-nav .sn-avatar-wrapper img {
+    border: 3px solid #5a95f5;
+}
+
+.light-blue-skin .side-nav .social a:hover {
+    background-color: #03a9f4;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.light-blue-skin .side-nav .collapsible li {
+    background-color: transparent;
+}
+
+.light-blue-skin .side-nav .collapsible li a.active {
+    background-color: #03a9f4;
+}
+
+.light-blue-skin .side-nav .collapsible li a:hover {
+    background-color: #062c69;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.light-blue-skin .side-nav .fa {
+    color: rgba(227, 242, 253, 0.64);
+}
+
+.light-blue-skin .navbar .navbar-nav .dropdown .dropdown-primary .dropdown-item:hover {
+    background-color: #03a9f4;
+}
+
+.light-blue-skin .btn-primary {
+    background: #4285F4;
+}
+
+.light-blue-skin .btn-primary:hover, .light-blue-skin .btn-primary:focus {
+    background-color: #5a95f5 !important;
+}
+
+.light-blue-skin .btn-primary.active {
+    background-color: #0b51c5 !important;
+}
+
+.light-blue-skin .btn-secondary {
+    background: #5C4AF5;
+}
+
+.light-blue-skin .btn-secondary:hover, .light-blue-skin .btn-secondary:focus {
+    background-color: #7262f6 !important;
+}
+
+.light-blue-skin .btn-secondary.active {
+    background-color: #200bce !important;
+}
+
+.light-blue-skin .btn-default,
+.light-blue-skin .card .btn-action {
+    background: #03a9f4;
+}
+
+.light-blue-skin .btn-default:hover, .light-blue-skin .btn-default:focus,
+.light-blue-skin .card .btn-action:hover,
+.light-blue-skin .card .btn-action:focus {
+    background-color: #5a95f5 !important;
+}
+
+.light-blue-skin .btn-default.active,
+.light-blue-skin .card .btn-action.active {
+    /*background-color: #051d43 !important;*/
+    background-color: #5a95f5 !important;
+}
+
+.light-blue-skin .btn-primary-outline {
+    border: 2px solid #4285F4;
+    color: #4285F4 !important;
+}
+
+.light-blue-skin .btn-secondary-outline {
+    border: 2px solid #5C4AF5;
+    color: #5C4AF5 !important;
+}
+
+.light-blue-skin .btn-default-outline {
+    border: 2px solid #0d47a1;
+    color: #0d47a1 !important;
+}
+
+.light-blue-skin input[type=checkbox].filled-in:checked + label:before {
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.light-blue-skin input[type=checkbox].filled-in:checked + label:after {
+    background-color: #0d47a1;
+    border-color: #0d47a1;
+}
+
+.light-blue-skin .top-nav-collapse {
+    background-color: #072e6e;
+}
+
+.light-blue-skin .carousel-multi-item .controls-top > a, .light-blue-skin .carousel-multi-item .carousel-indicators li, .light-blue-skin .carousel-multi-item .carousel-indicators li.active {
+    background-color: #072e6e;
+}
+
+/*.light-blue-skin .tag,*/
+.light-blue-skin .form-header, .light-blue-skin .card-header {
+    background-color: #03a9f4;
+}

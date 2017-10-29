@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <definition name="baseLayout" template="/WEB-INF/views/template.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/components/header.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/components/footer.jsp"/>
+    </definition>
+
+    <definition name="baseLayout4" template="/WEB-INF/views/template4.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/components/header4.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/components/footer4.jsp"/>
+    </definition>
+
+    <!--comming-soon-->
+
+    <definition name="coming-soon" template="/WEB-INF/views/coming-soon.jsp">
+    </definition>
+
+    <!--widget-->
+
+    <definition name="widget" template="/WEB-INF/views/widget.jsp">
+    </definition>
+
+    <!-- main views-->
+
+    <definition name="main" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/main.jsp"/>
+    </definition>
+
+    <definition name="about" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/info/about.jsp"/>
+    </definition>
+
+    <definition name="contacts" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/info/contacts.jsp"/>
+    </definition>
+
+    <definition name="user-agreement" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/info/user-agreement.jsp"/>
+    </definition>
+
+    <definition name="features" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/features.jsp"/>
+    </definition>
+
+    <definition name="tariffs" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/tariffs.jsp"/>
+    </definition>
+
+    <definition name="tariffs-rub" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/tariffs-rub.jsp"/>
+    </definition>
+
+    <definition name="tariffs-usd" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/tariffs-usd.jsp"/>
+    </definition>
+
+    <definition name="apps" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/mobile-apps.jsp"/>
+    </definition>
+
+    <definition name="faq" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/info/faq.jsp"/>
+    </definition>
+
+    <definition name="video-help" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/info/video-help.jsp"/>
+    </definition>
+
+    <definition name="card-design" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/info/card-design.jsp"/>
+    </definition>
+
+    <definition name="products" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/products.jsp"/>
+    </definition>
+
+    <definition name="product-view" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/product.jsp"/>
+    </definition>
+
+    <definition name="companies" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/companies.jsp"/>
+    </definition>
+
+    <definition name="company-view" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/company.jsp"/>
+    </definition>
+
+    <definition name="registration-company" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/registration-company.jsp"/>
+    </definition>
+
+    <!-- ____________________ COMPANY____________________ -->
+
+    <definition name="company-main" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-main.jsp"/>
+    </definition>
+
+    <definition name="company-balance" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-balance.jsp"/>
+    </definition>
+
+    <definition name="company-activity" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-activity.jsp"/>
+    </definition>
+
+    <definition name="company-products" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-products.jsp"/>
+    </definition>
+
+    <definition name="company-products-archive" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-products-archive.jsp"/>
+    </definition>
+
+
+    <definition name="registration-business" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-accept.jsp"/>
+    </definition>
+
+    <definition name="company-profile" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-profile.jsp"/>
+    </definition>
+
+    <definition name="company-contact-details" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/profile/company-contact-details.jsp"/>
+    </definition>
+
+    <definition name="company-requisites" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/profile/company-requisites.jsp"/>
+    </definition>
+
+    <definition name="company-cards-free" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/profile/company-cards-free.jsp"/>
+    </definition>
+
+    <definition name="company-settings-product" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/profile/company-settings-product.jsp"/>
+    </definition>
+
+    <definition name="company-settings-notification" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/profile/company-settings-notification.jsp"/>
+    </definition>
+
+    <!--<definition name="company-account" extends="baseLayout">-->
+    <!--<put-attribute name="main" value="/WEB-INF/views/company/company-account.jsp"/>-->
+    <!--</definition>-->
+
+    <definition name="product-detail" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-product-detail.jsp"/>
+    </definition>
+
+    <definition name="company-promotions" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-promotions.jsp"/>
+    </definition>
+
+    <definition name="company-promotion-detail" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-promotion-detail.jsp"/>
+    </definition>
+
+    <definition name="company-trainers" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-trainers.jsp"/>
+    </definition>
+
+    <definition name="company-trainer-detail" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-trainer-detail.jsp"/>
+    </definition>
+
+    <definition name="company-cards" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-clients.jsp"/>
+    </definition>
+
+    <definition name="company-card-view" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-client-view.jsp"/>
+    </definition>
+
+    <definition name="company-card-replace" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-card-replace.jsp"/>
+    </definition>
+
+    <definition name="company-card-detail" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-client-detail.jsp"/>
+    </definition>
+
+    <definition name="company-card-enroll" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-client-enroll.jsp"/>
+    </definition>
+
+    <definition name="company-card-abon" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-client-abon.jsp"/>
+    </definition>
+
+    <definition name="company-card-abon-history" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-client-abon-history.jsp"/>
+    </definition>
+
+    <definition name="company-users-birthday" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-clients-birthday.jsp"/>
+    </definition>
+
+
+    <definition name="report-products" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/reports/report-products.jsp"/>
+    </definition>
+
+    <definition name="report-sold-products" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/reports/report-sold-products.jsp"/>
+    </definition>
+
+    <definition name="report-clients" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/reports/report-clients.jsp"/>
+    </definition>
+
+    <definition name="report-clients-full" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/reports/report-clients-full.jsp"/>
+    </definition>
+
+
+    <definition name="report-visits-by-time" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/reports/report-visits-by-time.jsp"/>
+    </definition>
+
+    <definition name="report-birthday" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/reports/report-birthday.jsp"/>
+    </definition>
+
+    <definition name="report-single-attendance" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/reports/report-single-attendance.jsp"/>
+    </definition>
+
+    <definition name="report-trainer" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/reports/report-trainer.jsp"/>
+    </definition>
+
+
+    <definition name="company-info" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-info.jsp"/>
+    </definition>
+
+    <definition name="company-offices" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/structure/company-offices.jsp"/>
+    </definition>
+
+    <definition name="company-office-detail" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/structure/company-office-detail.jsp"/>
+    </definition>
+
+    <definition name="company-directions" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/structure/company-directions.jsp"/>
+    </definition>
+
+    <definition name="company-direction-detail" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/structure/company-direction-detail.jsp"/>
+    </definition>
+
+    <definition name="company-groups" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/structure/company-groups.jsp"/>
+    </definition>
+
+    <definition name="company-group-detail" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/structure/company-group-detail.jsp"/>
+    </definition>
+
+    <definition name="company-employees" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/structure/company-employees.jsp"/>
+    </definition>
+
+    <definition name="company-employee-detail" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/company/structure/company-employee-detail.jsp"/>
+    </definition>
+
+
+    <definition name="company-widget-design" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-widget-design.jsp"/>
+    </definition>
+
+    <definition name="company-widget-code" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/company/company-widget-code.jsp"/>
+    </definition>
+
+    <!-- ____________________ USER ____________________ -->
+
+    <definition name="user-abons" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/user/user-abons.jsp"/>
+    </definition>
+
+    <definition name="user-abon" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/user/user-abon.jsp"/>
+    </definition>
+
+    <definition name="user-abon-history" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/user/user-abon-history.jsp"/>
+    </definition>
+
+    <definition name="user-account" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/user/account.jsp"/>
+    </definition>
+
+    <definition name="user-account-change-email" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/user/user-change-email.jsp"/>
+    </definition>
+
+    <definition name="user-account-change-password" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/user/user-change-password.jsp"/>
+    </definition>
+
+    <definition name="user-account-settings" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/user/settings.jsp"/>
+    </definition>
+
+    <!-- ____________________ BUYING ____________________ -->
+
+    <definition name="cart" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/cart.jsp"/>
+    </definition>
+
+
+    <!--______________________Admin______________________-->
+
+    <!--<definition name="admin-company-tariff-detail" extends="baseLayout4">-->
+    <!--<put-attribute name="main" value="/WEB-INF/views/admin/admin-company-tariff-detail.jsp"/>-->
+    <!--</definition>-->
+
+    <definition name="admin-company-add-funds-detail" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-company-add-funds.jsp"/>
+    </definition>
+
+    <definition name="admin-cards" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-cards.jsp"/>
+    </definition>
+
+    <definition name="admin-users" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-users.jsp"/>
+    </definition>
+
+    <definition name="admin-companies" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-companies.jsp"/>
+    </definition>
+
+    <definition name="admin-company" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-company.jsp"/>
+    </definition>
+
+    <definition name="admin-company-add-cards" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-company-edit-cards.jsp"/>
+    </definition>
+
+    <definition name="admin-company-admins" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-company-admins.jsp"/>
+    </definition>
+
+    <definition name="admin-company-admin-detail" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-company-admin-detail.jsp"/>
+    </definition>
+
+    <definition name="admin-company-products" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-company-products.jsp"/>
+    </definition>
+
+    <definition name="admin-company-product-detail" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-company-product-detail.jsp"/>
+    </definition>
+
+    <definition name="admin-company-products-archive" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-company-products-archive.jsp"/>
+    </definition>
+
+    <definition name="admin-sms" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-sms.jsp"/>
+    </definition>
+
+    <definition name="admin-tariffs" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-tariffs.jsp"/>
+    </definition>
+
+    <definition name="admin-analytics" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-analytics.jsp"/>
+    </definition>
+
+
+    <definition name="admin-tariff-detail" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-tariff-detail.jsp"/>
+    </definition>
+
+    <definition name="admin-companies-full-statistics" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-companies-full-statistics.jsp"/>
+    </definition>
+
+    <definition name="admin-companies-contacts" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/admin/admin-companies-contacts.jsp"/>
+    </definition>
+
+    <!-- ____________________ Users ____________________ -->
+
+    <definition name="login" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/login.jsp"/>
+    </definition>
+
+    <definition name="registration" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/registration-client.jsp"/>
+    </definition>
+
+    <definition name="registration-message" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/registration-message.jsp"/>
+    </definition>
+
+    <definition name="regsuccessful" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/regsuccessful.jsp"/>
+    </definition>
+
+    <definition name="recover-password-request" extends="baseLayout4">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/recover-password-request.jsp"/>
+    </definition>
+
+    <definition name="recover-password" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/recover-password.jsp"/>
+    </definition>
+
+    <!-- ____________________ SYSTEM ____________________ -->
+
+    <definition name="system" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/system/system.jsp"/>
+    </definition>
+
+    <definition name="systemLayout" extends="baseLayout">
+        <put-attribute name="main" value="/WEB-INF/views/contents/system/systemLayout.jsp"/>
+    </definition>
+
+
+    <definition name="system-users" extends="systemLayout">
+        <put-attribute name="system-main" value="/WEB-INF/views/contents/system/system-users.jsp" cascade="true"/>
+    </definition>
+
+    <!-- ____________________ SYSTEM BLOG ____________________ -->
+
+    <definition name="system-blog" extends="systemLayout">
+        <put-attribute name="system-main" value="/WEB-INF/views/contents/system/blog/system-blog.jsp" cascade="true"/>
+    </definition>
+
+    <definition name="system-article" extends="systemLayout">
+        <put-attribute name="system-main" value="/WEB-INF/views/contents/system/blog/system-article.jsp"
+                       cascade="true"/>
+    </definition>
+
+    <!-- ____________________ SYSTEM MAIL ____________________ -->
+
+    <definition name="system-mailing" extends="systemLayout">
+        <put-attribute name="system-main" value="/WEB-INF/views/contents/system/mailing/system-mailing.jsp"
+                       cascade="true"/>
+    </definition>
+
+    <definition name="system-mail" extends="systemLayout">
+        <put-attribute name="system-main" value="/WEB-INF/views/contents/system/mailing/system-mail.jsp"
+                       cascade="true"/>
+    </definition>
+
+
+    <!-- //////////////// Error Template ///////////////////// -->
+
+    <definition name="common-error" template="/WEB-INF/views/template4.jsp">
+        <put-attribute name="header" value=""/>
+        <put-attribute name="main" value="/WEB-INF/views/contents/extra/common-error.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/components/footer4.jsp"/>
+    </definition>
+
+    <!--<definition name="errorLayout" template="/WEB-INF/views/errortemplate.jsp">-->
+    <!--<put-attribute name="title" value="/WEB-INF/views/components/title.jsp" />-->
+    <!--<put-attribute name="header" value="/WEB-INF/views/components/header.jsp" />-->
+    <!--<put-attribute name="footer" value="/WEB-INF/views/components/footer.jsp" />-->
+    <!--<put-attribute name="scripts" value="/WEB-INF/views/components/scriptsQueries.jsp" />-->
+    <!--</definition>-->
+
+    <!--<definition name="error-400" extends="errorLayout">-->
+    <!--<put-attribute name="errortitle" value="Incorrect URL" />-->
+    <!--<put-attribute name="errorcode" value="400" />-->
+    <!--</definition>-->
+
+    <!--<definition name="error-403" extends="errorLayout">-->
+    <!--<put-attribute name="errortitle" value="Forbidden" />-->
+    <!--<put-attribute name="errorcode" value="403" />-->
+    <!--</definition>-->
+
+    <!--<definition name="error-404" extends="errorLayout">-->
+    <!--<put-attribute name="errortitle" value="Page Not Found" />-->
+    <!--<put-attribute name="errorcode" value="404" />-->
+    <!--</definition>-->
+
+    <!--<definition name="error-500" extends="errorLayout">-->
+    <!--<put-attribute name="errortitle" value="Internal Server Error" />-->
+    <!--<put-attribute name="errorcode" value="500" />-->
+    <!--</definition>-->
+
+
+</tiles-definitions>

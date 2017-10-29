@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="mongo-config.xml"/>
+
+    <import resource="classpath:/mail-sender.xml"/>
+
+    <mongo:repositories base-package="com.jlife.abon.repository"/>
+
+    <context:property-placeholder location="classpath:system.properties" ignore-unresolvable="true"/>
+
+    <context:component-scan base-package="com.jlife.abon.facade"/>
+    <context:component-scan base-package="com.jlife.abon.service"/>
+    <context:component-scan base-package="com.jlife.abon.mapper"/>
+
+    <bean id="securityService" class="com.jlife.abon.security.SecurityService">
+    </bean>
+
+    <bean id="eventService" class="com.jlife.abon.service.impl.EventServiceImpl">
+    </bean>
+
+    <bean id="abonnementService" class="com.jlife.abon.service.AbonnementService"/>
+
+    <bean id="systemProperties"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <!--<value>classpath*:production.properties</value>-->
+                <value>classpath*:system.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="emailService" class="com.jlife.abon.service.impl.EmailServiceImpl">
+        <property name="mailSender" ref="mailSender"/>
+    </bean>
+
+    <import resource="sms-services.xml"/>
+
+    <bean id="questionService" class="com.jlife.abon.service.impl.QuestionServiceImpl"/>
+
+    <bean class="com.jlife.abon.service.impl.TemplateServiceImpl" id="templateService"/>
+
+    <!--Adds argument level validation for @Validated classes-->
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+
+</beans>
