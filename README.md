@@ -1,4 +1,4 @@
-# Abon
+# SeasonCard WEB
 ## Required environment:
     * Java >=8
     * MongoDB >= 3
