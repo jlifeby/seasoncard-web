@@ -1,4 +1,5 @@
 # SeasonCard WEB
+## Demo deployment: [seasoncard.by](http://seasoncard.by)
 ## Required environment:
     * Java >=8
     * MongoDB >= 3
